@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Room } from './rooms';
 
 @Component({
   selector: 'app-rooms',
@@ -11,11 +12,19 @@ export class RoomsComponent implements OnInit {
   numberOfRooms = 20;
   hideRooms = false;
 
+  rooms : Room = {
+    totalRooms : 20,
+    availableRooms : 10,
+    bookedRooms : 5,
+
+  };
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  
   //event binding
   toggle(){
     this.hideRooms = !this.hideRooms;
