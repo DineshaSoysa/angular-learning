@@ -5,11 +5,11 @@
     <h3>Number of Rooms : <div [innerText]="numberOfRooms"></div></h3>
 </div>
 
-<div *ngIf="rooms.availableRooms > 0">
+<div [ngClass]="'background'"  *ngIf="rooms.availableRooms > 0">
     <h2>Rooms List</h2>
 </div>
 
-<table>
+<table [ngStyle]="{'color' : 'red'}">
     <thead>
         <th>Index</th>
         <th>Room Number</th>
