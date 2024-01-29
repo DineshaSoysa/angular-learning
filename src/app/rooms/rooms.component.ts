@@ -11,7 +11,8 @@ export class RoomsComponent implements OnInit {
   hotelname = 'Hilton Hotel'
   numberOfRooms = 20;
   hideRooms = false;
-
+  mySelection! : RoomList;
+  title : String = "List of Rooms"
   rooms : Room = {
     totalRooms : 20,
     availableRooms : 10,
@@ -54,6 +55,27 @@ export class RoomsComponent implements OnInit {
   
 toggle(){
   this.hideRooms = !this.hideRooms
+  this.title = "Room List"
+}
+
+selectRoom(room : RoomList){
+  this.mySelection = room;
+}
+
+addRoom(){
+  const newRoom : RoomList ={
+    roomNumber : 4,
+    roomType : 'Deluxe Room Type 4',
+    roomAmenities : 'Air Conditioner , Free Wi- Fi , TV, Kitchen, Bathroom',
+    roomPrice : '1500',
+    checkinTime : new Date('24-Jan-2024'),
+    checkoutTime : new Date('25-Jan-2024'),
+  }
+
+  //this is create new instance of array - immutable
+  this.rooms_list = [...this.rooms_list,newRoom]
+  //this will modify the list - mutable. Not work with change detection
+  // this.rooms_list.push(newRoom);
 }
 
 }

@@ -1,0 +1,44 @@
+<div [ngClass]="'background'">
+    <h2>{{title}}</h2>
+</div>
+
+<div>
+    <!-- <h3>{{changedValue | json}}</h3> -->
+</div>
+
+<table [ngStyle]="{'color' : 'red'}" class="table">
+    <thead>
+        <th>Index</th>
+        <th>Room Number</th>
+        <th>Room Type</th>
+        <th>Room Price</th>
+        <th>Room Amenities</th>
+        <th>Checkin Time</th>
+        <th>Checkout Time</th>
+        <th>Select the Room</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let room of rooms | slice : 0:10 ; let i = index">
+            <td>{{i}}</td>
+            <td>{{room.roomNumber}}</td>
+
+            <!-- Upper case pipe -->
+            <td>{{room.roomType | uppercase}}</td>
+            
+            <!-- currency pipe -->
+            <td>{{room.roomPrice | currency : 'Rs : '}}</td>
+
+            <!-- lower case pipe -->
+            <td>{{room.roomAmenities | lowercase}}</td>
+            <!-- date pipe example -->
+            <td>{{room.checkinTime | date : 'shortDate'}}</td>
+            <td>{{room.checkoutTime | date : 'shortDate'}}</td>
+            <td>
+                <button
+                (click)="buttonSelect(room)"
+                >Select
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
