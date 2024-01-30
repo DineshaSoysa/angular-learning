@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, DoCheck, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, DoCheck, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { Room, RoomList } from './rooms';
 import { HeaderComponent } from '../header/header.component';
 
@@ -7,7 +7,7 @@ import { HeaderComponent } from '../header/header.component';
   templateUrl: './rooms.component.html',
   styleUrls: ['./rooms.component.css'],
 })
-export class RoomsComponent implements OnInit, DoCheck , AfterViewInit{
+export class RoomsComponent implements OnInit , AfterViewInit{
   hotelname = 'Hilton Hotel';
   numberOfRooms = 20;
   hideRooms = false;
@@ -50,18 +50,27 @@ export class RoomsComponent implements OnInit, DoCheck , AfterViewInit{
 
   @ViewChild(HeaderComponent , {static : true}) headercomponent!: HeaderComponent;
 
+  //here  we can't change static : true since it has multiple views. angular not allow it. So we need to access 
+  //it through ngAfterviewInit
+  @ViewChildren(HeaderComponent)
+  headercomponentList!: QueryList<HeaderComponent>;
+
   ngOnInit(): void {
-    this.headercomponent.title = "title from header component"
+    this.headercomponent.title = "first header title"
+
+    // this.headercomponent.title = "title from header component"
     // this.title = this.headercomponent.title;
-    console.log(this.headercomponent);
+    // console.log(this.headercomponent);
   }
 
-  ngDoCheck(): void {
-    console.log('inside do check');
-  }
+  // ngDoCheck(): void {
+  //   console.log('inside do check');
+  // }
 
-  ngAfterViewInit(): void {
-      console.log(this.headercomponent);
+  ngAfterViewInit(){
+      console.log(this.headercomponentList);
+      // this.headercomponent.title = "first header title"
+      this.headercomponentList.last.title = "last header title"
   }
 
   //Do check - very costly. try to avoid as much as possible.
