@@ -8,32 +8,35 @@
     <h1>this is frm container</h1>
 </app-container> -->
 
-
 <!-- Interpolation binding -->
-<h1>welcome to {{hotelname}}</h1>
+<h1>welcome to {{ hotelname }}</h1>
 <div [hidden]="hideRooms">
-    <!-- property binding -->
-    <h3>Number of Rooms : <div [innerText]="numberOfRooms"></div></h3>
+  <!-- property binding -->
+  <h3>
+    Number of Rooms :
+    <div [innerText]="numberOfRooms"></div>
+  </h3>
 </div>
 
 <div *ngIf="mySelection">
-    {{mySelection | json}}
+  {{ mySelection | json }}
 </div>
-<br>
+<br />
+
+<button (click)="addRoom()">Add Room</button>
+
+<!-- ondestroy check -->
+<div *ngIf="hideRooms">
+    <app-room-list
+    [rooms]="rooms_list"
+    (selectedRoom)="selectRoom($event)"
+    [title]="title"
+  >
+  </app-room-list>
+</div>
 
 
+<button (click)="toggle()">Toggle</button>
 
-
-<button
-(click)="addRoom()">
-Add Room
-</button>
-
-<app-room-list [rooms] = "rooms_list" (selectedRoom)="selectRoom($event)"
-[title] = "title">
-</app-room-list>
-
-<button (click)="toggle()"> Toggle</button>
-
- <h3>Here I am going to print json pipe</h3>
- {{rooms | json}}
+<h3>Here I am going to print json pipe</h3>
+{{ rooms | json }}
