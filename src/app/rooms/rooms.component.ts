@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, DoCheck, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { Room, RoomList } from './rooms';
 import { HeaderComponent } from '../header/header.component';
+import { RoomsService } from './rooms.service';
 
 @Component({
   selector: 'app-rooms',
@@ -19,34 +20,9 @@ export class RoomsComponent implements OnInit , AfterViewInit{
     bookedRooms: 5,
   };
 
-  rooms_list: RoomList[] = [
-    {
-      roomNumber: 1,
-      roomType: 'Deluxe Room Type 1',
-      roomAmenities: 'Air Conditioner , Free Wi- Fi , TV, Kitchen, Bathroom',
-      roomPrice: '500',
-      checkinTime: new Date('24-Jan-2024'),
-      checkoutTime: new Date('25-Jan-2024'),
-    },
-    {
-      roomNumber: 2,
-      roomType: 'Deluxe Room Type 2',
-      roomAmenities: 'Air Conditioner , Free Wi- Fi , TV, Kitchen, Bathroom',
-      roomPrice: '1000',
-      checkinTime: new Date('24-Jan-2024'),
-      checkoutTime: new Date('25-Jan-2024'),
-    },
-    {
-      roomNumber: 3,
-      roomType: 'Deluxe Room Type 3',
-      roomAmenities: 'Air Conditioner , Free Wi- Fi , TV, Kitchen, Bathroom',
-      roomPrice: '1500',
-      checkinTime: new Date('24-Jan-2024'),
-      checkoutTime: new Date('25-Jan-2024'),
-    },
-  ];
+  constructor(private roomservice : RoomsService) {}
 
-  constructor() {}
+  rooms_list : RoomList[] = [];
 
   @ViewChild(HeaderComponent , {static : true}) headercomponent!: HeaderComponent;
 
@@ -57,6 +33,7 @@ export class RoomsComponent implements OnInit , AfterViewInit{
 
   ngOnInit(): void {
     this.headercomponent.title = "first header title"
+    this.rooms_list = this.roomservice.getRoom();
 
     // this.headercomponent.title = "title from header component"
     // this.title = this.headercomponent.title;
