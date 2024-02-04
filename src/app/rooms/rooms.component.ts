@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, DoCheck, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, DoCheck, OnInit, QueryList, SkipSelf, ViewChild, ViewChildren } from '@angular/core';
 import { Room, RoomList } from './rooms';
 import { HeaderComponent } from '../header/header.component';
 import { RoomsService } from './rooms.service';
@@ -20,7 +20,7 @@ export class RoomsComponent implements OnInit , AfterViewInit{
     bookedRooms: 5,
   };
 
-  constructor(private roomservice : RoomsService) {}
+  constructor(@SkipSelf() private roomservice : RoomsService) {}
 
   rooms_list : RoomList[] = [];
 

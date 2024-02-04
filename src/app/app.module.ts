@@ -9,6 +9,7 @@ import { RoomListComponent } from './rooms/room-list/room-list.component';
 import { HeaderComponent } from './header/header.component';
 import { ContainerComponent } from './container/container.component';
 import { EmployeeComponent } from './employee/employee.component';
+import { RoomsService } from './rooms/rooms.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,11 @@ import { EmployeeComponent } from './employee/employee.component';
     AppRoutingModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  
+  //we can reister a service like this also
+  // providers: [RoomsService],
+
+  providers : [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

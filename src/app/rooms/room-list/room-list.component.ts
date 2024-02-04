@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 import { RoomList } from '../rooms';
+import { RoomsService } from '../rooms.service';
   
 
 @Component({
@@ -7,7 +8,7 @@ import { RoomList } from '../rooms';
   templateUrl: './room-list.component.html',
   styleUrls: ['./room-list.component.css'],
   changeDetection :ChangeDetectionStrategy.OnPush,
-})
+ })
 export class RoomListComponent implements OnInit , OnChanges , OnDestroy{
 
   @Input() title : String = ""
